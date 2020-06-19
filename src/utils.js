@@ -10,7 +10,7 @@ function format (input, opt = defaults) {
   }
   var negative = input.indexOf('-') >= 0 ? '-' : ''
 
-  var numbers = onlyNumbersOrDefault(input, opt.emptyValue)
+  var numbers = onlyNumbers(input)
   var currency = numbersToCurrency(numbers, opt.precision)
   var parts = toStr(currency).split('.')
   var integer = parts[0]
@@ -24,13 +24,13 @@ function unformat (input, opt = defaults) {
     return opt.emptyValue
   }
   var negative = input.indexOf('-') >= 0 ? -1 : 1
-  var numbers = onlyNumbersOrDefault(input, opt.emptyValue)
+  var numbers = onlyNumbers(input)
   var currency = numbersToCurrency(numbers, opt.precision)
   return parseFloat(currency) * negative
 }
 
-function onlyNumbersOrDefault (input, emptyValue) {
-  return toStr(input).replace(/\D+/g, '') || emptyValue
+function onlyNumbers (input) {
+  return toStr(input).replace(/\D+/g, '') || '0'
 }
 
 // Uncaught RangeError: toFixed() digits argument must be between 0 and 20 at Number.toFixed
@@ -60,6 +60,7 @@ function joinIntegerAndDecimal (integer, decimal, separator) {
   return decimal ? integer + separator + decimal : integer
 }
 
+/* Converte valor para string ou retorna vazio */
 function toStr (value) {
   return value ? value.toString() : ''
 }
