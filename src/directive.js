@@ -26,14 +26,15 @@ export default function (el, binding) {
   }
 
   el.oninput = function () {
-    console.log(el.value)
-    var positionFromEnd = el.value.length - el.selectionEnd
-    if (backspacePressed && positionFromEnd === 0) {
-      el.value = opt.emptyValue
-      el.dispatchEvent(event('change')) // v-model.lazy
-      return
-    }
+    console.log('Antes', el.value)
+    // var positionFromEnd = el.value.length - el.selectionEnd
+    // if (backspacePressed && positionFromEnd === 0) {
+    //   el.value = opt.emptyValue
+    //   el.dispatchEvent(event('change')) // v-model.lazy
+    //   return
+    // }
     el.value = format(el.value, opt)
+    console.log('Depois', el.value)
     positionFromEnd = Math.max(positionFromEnd, opt.suffix.length) // right
     positionFromEnd = el.value.length - positionFromEnd
     positionFromEnd = Math.max(positionFromEnd, opt.prefix.length + 1) // left
