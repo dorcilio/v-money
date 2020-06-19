@@ -72,7 +72,7 @@ export default {
 
   methods: {
     change (evt) {
-      this.$emit('input', this.masked ? evt.target.value : unformat(evt.target.value, this.precision))
+      this.$emit('input', this.masked ? evt.target.value : unformat(evt.target.value, this.precision, this.$props))
     }
   }
 }
