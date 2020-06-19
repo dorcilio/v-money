@@ -27,12 +27,10 @@ export default function (el, binding) {
 
   el.oninput = function () {
     console.log('Antes', el.value)
+    if (backspacePressed && el.value === 'R$ 0,0') {
+      el.value = opt.emptyValue
+    }
     var positionFromEnd = el.value.length - el.selectionEnd
-    // if (backspacePressed && positionFromEnd === 0) {
-    //   el.value = opt.emptyValue
-    //   el.dispatchEvent(event('change')) // v-model.lazy
-    //   return
-    // }
     el.value = format(el.value, opt)
     console.log('Depois', el.value)
     positionFromEnd = Math.max(positionFromEnd, opt.suffix.length) // right
