@@ -16,8 +16,9 @@ export default {
   props: {
     value: {
       required: true,
-      type: [Number, String],
-      default: 0
+      // type: [Number, String],
+      validator: prop => typeof prop === 'number' || typeof prop === 'string' || prop === null || prop === undefined,
+      default: null
     },
     masked: {
       type: Boolean,
