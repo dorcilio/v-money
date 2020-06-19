@@ -20,6 +20,9 @@ function format (input, opt = defaults) {
 }
 
 function unformat (input, precision) {
+  if (input === '' || input === null || input === undefined) {
+    return null
+  }
   var negative = input.indexOf('-') >= 0 ? -1 : 1
   var numbers = onlyNumbers(input)
   var currency = numbersToCurrency(numbers, precision)
