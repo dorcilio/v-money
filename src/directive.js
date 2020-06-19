@@ -16,17 +16,17 @@ export default function (el, binding) {
     }
   }
 
-  // el.onkeydown = function (e) {
-  //   var backspacePressed = e.which == 8 || e.which == 46
-  //   var atEndPosition = (el.value.length - el.selectionEnd) === 0
-  //   if (opt.allowBlank && backspacePressed && atEndPosition && (unformat(el.value, opt) === 0)) {
-  //     el.value = ''
-  //     el.dispatchEvent(event('change')) // v-model.lazy
-  //   }
-  // }
+  var backspacePressed = false
+  el.onkeydown = function (e) {
+    backspacePressed = e.which == 8 || e.which == 46 ? true : false
+    // var atEndPosition = (el.value.length - el.selectionEnd) === 0
+    // if (opt.allowBlank && backspacePressed && atEndPosition && (unformat(el.value, opt) === 0)) {
+    //   el.value = ''
+    //   el.dispatchEvent(event('change')) // v-model.lazy
+    // }
+  }
 
-  el.oninput = function (e) {
-    var backspacePressed = e.which == 8 || e.which == 46
+  el.oninput = function () {
     var positionFromEnd = el.value.length - el.selectionEnd
     if (backspacePressed && positionFromEnd === 0) {
       el.value = opt.emptyValue
