@@ -99,7 +99,7 @@ Must use `vmodel.lazy` to bind works properly.
 | prefix     | false    | String  | ""      | Currency symbol followed by a Space, like "R$ "         |
 | suffix     | false    | String  | ""      | Percentage for example: " %"                            |
 | masked     | false    | Boolean | false   | If the component output should include the mask or not  |
-| allowBlank | false    | Boolean | false   | If the field can start blank and be cleared out by user |
+| emptyValue | false    | ***     | null    | If the field is empty can start with setted value       |
 
 ### References
 

@@ -1,8 +1,8 @@
 import defaults from './options'
 
 function format (input, opt = defaults) {
-  if (opt.allowBlank && (input === '' || input === null ||  input === undefined)) {
-    return null
+  if (input === '' || input === null ||  input === undefined) {
+    return opt.emptyValue
   }
 
   if (typeof input === 'number') {
@@ -19,13 +19,13 @@ function format (input, opt = defaults) {
   return opt.prefix + negative + joinIntegerAndDecimal(integer, decimal, opt.decimal) + opt.suffix
 }
 
-function unformat (input, precision) {
+function unformat (input, opt = defaults) {
   if (input === '' || input === null || input === undefined) {
-    return null
+    return opt.emptyValue
   }
   var negative = input.indexOf('-') >= 0 ? -1 : 1
   var numbers = onlyNumbers(input)
-  var currency = numbersToCurrency(numbers, precision)
+  var currency = numbersToCurrency(numbers, opt.precision)
   return parseFloat(currency) * negative
 }
 
