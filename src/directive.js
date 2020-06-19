@@ -27,7 +27,7 @@ export default function (el, binding) {
 
   el.oninput = function () {
     console.log('Antes', el.value)
-    // var positionFromEnd = el.value.length - el.selectionEnd
+    var positionFromEnd = el.value.length - el.selectionEnd
     // if (backspacePressed && positionFromEnd === 0) {
     //   el.value = opt.emptyValue
     //   el.dispatchEvent(event('change')) // v-model.lazy
