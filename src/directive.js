@@ -26,13 +26,11 @@ export default function (el, binding) {
   }
 
   el.oninput = function () {
-    console.log('Antes', el.value)
     if (backspacePressed && el.value === 'R$ 0,0') {
       el.value = opt.emptyValue
     }
     var positionFromEnd = el.value.length - el.selectionEnd
     el.value = format(el.value, opt)
-    console.log('Depois', el.value)
     positionFromEnd = Math.max(positionFromEnd, opt.suffix.length) // right
     positionFromEnd = el.value.length - positionFromEnd
     positionFromEnd = Math.max(positionFromEnd, opt.prefix.length + 1) // left
