@@ -28,6 +28,7 @@ export default function (el, binding) {
   el.oninput = function () {
     if (backspacePressed && el.value === 'R$ 0,0') {
       el.value = opt.emptyValue
+      return
     }
     var positionFromEnd = el.value.length - el.selectionEnd
     el.value = format(el.value, opt)
